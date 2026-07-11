@@ -27,7 +27,7 @@ X_test=cv.transform(X_test)
 #making the Bernoulli Naive Bayse:-
 model=BernoulliNB()
 model.fit(X_train,y_train)# training the data
-y_pred=model.predict(y_test)
+y_pred=model.predict(X_test)
 
 #model evaluation:
 accuracy=accuracy_score(y_test,y_pred)
