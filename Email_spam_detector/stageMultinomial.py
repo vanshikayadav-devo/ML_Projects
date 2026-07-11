@@ -35,7 +35,7 @@ model=MultinomialNB()
 model.fit(X_train,y_train)#traingin the model
 y_pred=model.predict(X_test)#making the prediction
 
-#mdel evaluation:
+#model evaluation:
 accuracy=accuracy_score(y_test,y_pred)
 precision=precision_score(y_test,y_pred)
 recall=recall_score(y_test,y_pred)
