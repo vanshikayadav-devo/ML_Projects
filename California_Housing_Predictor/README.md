@@ -1,140 +1,247 @@
-# 🏠 California Housing Price Prediction using K-Nearest Neighbors (KNN) Regression
+# 🏠 California Housing Price Prediction using K-Nearest Neighbors (KNN) and Random Forest Regression
 
-This project implements the **K-Nearest Neighbors (KNN) Regression** algorithm to predict the **median house value** of houses in California using various housing-related features.
+This project implements two popular **Machine Learning Regression algorithms**—**K-Nearest Neighbors (KNN) Regressor** and **Random Forest Regressor**—to predict the **Median House Value** of houses in California.
 
-The project demonstrates the complete machine learning workflow including data preprocessing, feature engineering, feature scaling, model training, prediction, and evaluation.
-
----
-
-## 📌 Project Objective
-
-The objective of this project is to predict the **Median House Value** based on different housing characteristics such as location, income, population, number of rooms, and proximity to the ocean.
+The project demonstrates the complete machine learning workflow, including data preprocessing, feature engineering, feature scaling (for KNN), model training, prediction, evaluation, and performance comparison between the two algorithms.
 
 ---
 
-## 📂 Dataset
+# 📌 Project Objective
+
+The objective of this project is to predict the **Median House Value** based on various housing characteristics such as location, median income, population, number of rooms, households, and proximity to the ocean.
+
+The project also compares the performance of **KNN Regression** and **Random Forest Regression** on the same dataset.
+
+---
+
+# 📂 Dataset
+
+## California Housing Dataset
 
 ### Features
 
-| Feature | Description |
-|----------|-------------|
-| Longitude | Longitude coordinate of the house |
-| Latitude | Latitude coordinate of the house |
-| Housing Median Age | Median age of houses in the block |
-| Total Rooms | Total number of rooms |
-| Total Bedrooms | Total number of bedrooms |
-| Population | Population in the block |
-| Households | Number of households |
-| Median Income | Median income of households |
-| Ocean Proximity | Distance of the house from the ocean (Categorical Feature) |
+| Feature            | Description                                                |
+| ------------------ | ---------------------------------------------------------- |
+| Longitude          | Longitude coordinate of the house                          |
+| Latitude           | Latitude coordinate of the house                           |
+| Housing Median Age | Median age of houses in the block                          |
+| Total Rooms        | Total number of rooms                                      |
+| Total Bedrooms     | Total number of bedrooms                                   |
+| Population         | Population in the block                                    |
+| Households         | Number of households                                       |
+| Median Income      | Median income of households                                |
+| Ocean Proximity    | Distance of the house from the ocean (Categorical Feature) |
 
 ### Target Variable
 
-- **Median House Value**
+* **Median House Value**
 
 ---
 
-## ⚙️ Project Workflow
+# ⚙️ Project Workflow
 
-- Load the California Housing dataset
-- Perform data exploration
-- Handle categorical features (`ocean_proximity`)
-- Separate features and target variable
-- Split the dataset into training and testing sets
-- Apply StandardScaler for feature scaling
-- Train the KNN Regressor model
-- Predict house prices
-- Evaluate model performance
-
----
-
-## 🧠 Machine Learning Algorithm
-
-**K-Nearest Neighbors Regression (KNN Regressor)**
-
-The model predicts the value of a house by averaging the prices of the **K nearest houses** based on the selected distance metric.
+* Load the California Housing dataset
+* Perform data exploration
+* Check missing values
+* Handle missing values
+* Encode categorical features (`ocean_proximity`)
+* Select input features and target variable
+* Split the dataset into training and testing sets
+* Apply **StandardScaler** (KNN only)
+* Train the KNN Regressor
+* Train the Random Forest Regressor
+* Predict house prices
+* Evaluate both models
+* Compare model performance
 
 ---
 
-## 📊 Model Evaluation Metrics
+# 🧠 Machine Learning Algorithms
 
-The model is evaluated using:
+## 1️⃣ K-Nearest Neighbors (KNN) Regressor
 
-- Mean Absolute Error (MAE)
-- Mean Squared Error (MSE)
-- Root Mean Squared Error (RMSE)
-- R² Score
+KNN predicts the price of a house by finding the **K nearest houses** based on a chosen distance metric and averaging their prices.
 
----
+### Characteristics
 
-## 🛠️ Technologies Used
-
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
+* Distance-based algorithm
+* Lazy Learning Algorithm
+* Requires Feature Scaling
+* Simple and easy to understand
 
 ---
 
-## 📦 Python Libraries
+## 2️⃣ Random Forest Regressor
+
+Random Forest is an **Ensemble Learning Algorithm** that builds multiple Decision Trees using random subsets of data and features.
+
+Each tree predicts a house price, and the final prediction is obtained by averaging the predictions of all trees.
+
+### Characteristics
+
+* Ensemble Learning Algorithm
+* High prediction accuracy
+* Less prone to overfitting
+* Handles complex relationships effectively
+* Does not require feature scaling
+
+---
+
+# 🧹 Data Preprocessing
+
+The following preprocessing steps were performed:
+
+* Filled missing values in **total_bedrooms** using the column mean.
+* Converted the categorical feature **ocean_proximity** into numerical values using **LabelEncoder**.
+* Applied **StandardScaler** before training the KNN model.
+* Selected relevant features for training.
+
+---
+
+# 📊 Model Evaluation Metrics
+
+Both models were evaluated using:
+
+* Mean Absolute Error (MAE)
+* Mean Squared Error (MSE)
+* Root Mean Squared Error (RMSE)
+* R² Score
+
+---
+
+# 📈 Model Performance
+
+| Metric                         |        KNN Regressor | Random Forest Regressor |
+| ------------------------------ | -------------------: | ----------------------: |
+| Mean Absolute Error (MAE)      |        **40,696.11** |           **32,193.21** |
+| Mean Squared Error (MSE)       | **3,742,964,884.89** |    **2,524,664,227.62** |
+| Root Mean Squared Error (RMSE) |        **61,179.78** |           **50,246.04** |
+| R² Score                       |           **0.7144** |              **0.8073** |
+
+---
+
+# 📊 Performance Comparison
+
+### KNN Regressor
+
+**Advantages**
+
+* Simple and easy to implement
+* Works well on smaller datasets
+* No training phase
+
+**Disadvantages**
+
+* Requires feature scaling
+* Slower predictions on large datasets
+* Sensitive to the choice of **K**
+* Performance decreases with high-dimensional data
+
+---
+
+### Random Forest Regressor
+
+**Advantages**
+
+* Higher prediction accuracy
+* Handles non-linear relationships effectively
+* Less prone to overfitting
+* Robust against noise and outliers
+* Does not require feature scaling
+
+**Disadvantages**
+
+* Longer training time
+* Higher memory usage
+* More complex than KNN
+
+---
+
+# 🏆 Conclusion
+
+Based on the evaluation metrics, the **Random Forest Regressor outperformed the KNN Regressor** on the California Housing dataset.
+
+* Lower prediction errors (MAE, MSE, RMSE)
+* Higher R² Score
+* Better generalization on unseen data
+
+This demonstrates the effectiveness of ensemble learning techniques for complex regression problems.
+
+---
+
+# 🛠️ Technologies Used
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Scikit-learn
+
+---
+
+# 📦 Python Libraries
 
 ```python
 pandas
 numpy
+matplotlib
 scikit-learn
 ```
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
-```
+```text
 California_Housing_Predictor/
 │
 ├── housing.csv
-├── stage.py
+├── knn_regression.py
+├── random_forest_regression.py
 ├── README.md
-
+└── requirements.txt
 ```
 
 ---
 
-
-
-## 📈 Results
-
-The trained KNN Regressor predicts California house prices using the nearest neighboring houses and is evaluated using multiple regression metrics to measure prediction performance.
-|---40696.10814645626--->mean_absolute_error
-|---3742964884.8899155--->mean_squared_error
-|---61179.775129448746--->root_mean_squared_error
-|---0.7143666636110436--->r2_score
----
-
-## 📚 Learning Outcomes
+# 📚 Learning Outcomes
 
 Through this project, I learned:
 
-- K-Nearest Neighbors Regression
-- Regression workflow in Scikit-learn
-- Feature scaling using StandardScaler
-- Encoding categorical variables
-- Data preprocessing
-- Train-Test Split
-- Regression evaluation metrics
-- Effect of different distance metrics in KNN
+* Regression using Scikit-learn
+* K-Nearest Neighbors Regression
+* Random Forest Regression
+* Ensemble Learning
+* Feature Scaling using StandardScaler
+* Label Encoding
+* Handling Missing Values
+* Data Preprocessing
+* Train-Test Split
+* Regression Evaluation Metrics (MAE, MSE, RMSE, R² Score)
+* Comparing multiple machine learning algorithms
 
 ---
 
-## 🔮 Future Improvements
+# 🔮 Future Improvements
 
-- Hyperparameter tuning using GridSearchCV
-- K-Fold Cross Validation
-- Compare different values of K
-- Compare different distance metrics
-- Feature engineering
-- Data visualization
-- Compare KNN with Linear Regression, Decision Tree, and Random Forest Regression
+* Hyperparameter tuning using GridSearchCV and RandomizedSearchCV
+* K-Fold Cross Validation
+* Feature Importance Visualization
+* Actual vs Predicted Values graph
+* Compare different values of **K** in KNN
+* Tune Random Forest hyperparameters (`n_estimators`, `max_depth`, etc.)
+* Compare with Linear Regression and Decision Tree Regression
+* Deploy the best-performing model using Flask, FastAPI, or Streamlit
 
 ---
 
-## ⭐ If you found this project helpful, consider giving it a star!
+# 👩‍💻 Author
+
+**Vanshika Yadav**
+
+B.Tech in Information Technology
+Dr. B.R. Ambedkar National Institute of Technology (NIT) Jalandhar
+
+---
+
+⭐ If you found this project helpful, consider giving the repository a **Star**!
